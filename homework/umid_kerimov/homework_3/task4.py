@@ -1,5 +1,5 @@
 a = int(input("a: "))
 b = int(input("b: "))
-c = (a**2 + b**2)**0.5
+c = (a ** 2 + b ** 2) ** 0.5
 print("c =", c)
-print("S =", a*b/2)
+print("S =", a * b / 2)
