@@ -8,6 +8,3 @@ def result_sum(result):
     colon_index = result.index(':')
     number = int(result.index(':')[colon_index + 1:]) + 10
     print(number)
-
-
-result_sum(result4)
