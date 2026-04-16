@@ -1,0 +1,97 @@
+INSERT INTO students (name, second_name, group_id)
+VALUES ('Umid', 'Kerimov', 1);
+
+INSERT INTO books (title, taken_by_student_id)
+VALUES ('Маша и Медведь', 22823);
+
+INSERT INTO books (title, taken_by_student_id)
+VALUES ('Колобок', 22823);
+
+INSERT INTO books (title, taken_by_student_id)
+VALUES ('Репка', 22823);
+
+INSERT INTO `groups` (title, start_date, end_date)
+VALUES ('Students Umid', '16 April', '17 April');
+
+UPDATE students
+SET group_id = 22731
+WHERE id = 22823;
+
+INSERT INTO subjects (title)
+VALUES ('Музыка');
+
+INSERT INTO subjects (title)
+VALUES ('История');
+
+INSERT INTO subjects (title)
+VALUES ('Информатика');
+
+INSERT INTO lessons (title, subject_id)
+VALUES ('Музыка', 22821);
+
+INSERT INTO lessons (title, subject_id)
+VALUES ('Музыка', 22821);
+
+INSERT INTO lessons (title, subject_id)
+VALUES ('Информатика', 22823);
+
+INSERT INTO lessons (title, subject_id)
+VALUES ('Информатика', 22823);
+
+INSERT INTO lessons (title, subject_id)
+VALUES ('История', 22822);
+
+INSERT INTO lessons (title, subject_id)
+VALUES ('История', 22822);
+
+
+INSERT INTO marks (value, lesson_id, student_id)
+VALUES (5, 76078, 22823);
+
+INSERT INTO marks (value, lesson_id, student_id)
+VALUES (4, 76078, 22823);
+
+INSERT INTO marks (value, lesson_id, student_id)
+VALUES (2, 76079, 22823);
+
+INSERT INTO marks (value, lesson_id, student_id)
+VALUES (3, 76079, 22823);
+
+INSERT INTO marks (value, lesson_id, student_id)
+VALUES (4, 76082, 22823);
+
+INSERT INTO marks (value, lesson_id, student_id)
+VALUES (5, 76082, 22823);
+
+SELECT value
+FROM marks
+WHERE student_id = 22823;
+
+SELECT *
+FROM books
+WHERE taken_by_student_id = 22823;
+
+
+SELECT
+    s.id AS student_id,
+    s.name,
+    s.second_name,
+    g.title AS group_title,
+    b.title AS book_title,
+    m.value AS mark_value,
+    l.title AS lesson_title,
+    sub.title AS subject_title
+FROM
+    students AS s
+    LEFT JOIN `groups` AS g
+        ON s.group_id = g.id
+    LEFT JOIN books AS b
+        ON b.taken_by_student_id = s.id
+    LEFT JOIN marks AS m
+        ON m.student_id = s.id
+    LEFT JOIN lessons AS l
+        ON l.id = m.lesson_id
+    LEFT JOIN subjects AS sub
+        ON sub.id = l.subject_id
+WHERE
+    s.id = 22823;
