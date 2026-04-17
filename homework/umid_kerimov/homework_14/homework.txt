@@ -1,5 +1,5 @@
 INSERT INTO students (name, second_name, group_id)
-VALUES ('Umid', 'Kerimov', 1);
+VALUES ('Umid', 'Kerimov', NULL);
 
 INSERT INTO books (title, taken_by_student_id)
 VALUES ('Маша и Медведь', 22823);
