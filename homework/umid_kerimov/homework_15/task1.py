@@ -28,12 +28,10 @@ books_data = [
     ('Репка', student_id)
 ]
 
-book_ids = []
-for title, taken_by in books_data:
-    cursor.execute("INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
-                   (title, taken_by))
-    book_id = cursor.lastrowid
-    book_ids.append(book_id)
+cursor.executemany(
+    "INSERT INTO books (title, taken_by_student_id) VALUES (%s, %s)",
+    books_data
+)
 db.commit()
 
 subjects_data = ['Музыка', 'История', 'Информатика']
@@ -71,9 +69,10 @@ marks_data = [
     (5, lesson_ids['История'][0], student_id)
 ]
 
-for value, lesson_id, stud_id in marks_data:
-    cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)",
-                   (value, lesson_id, stud_id))
+cursor.executemany(
+    "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)",
+    marks_data
+)
 db.commit()
 
 cursor.execute("SELECT value FROM marks WHERE student_id = %s", (student_id,))
